@@ -22,23 +22,4 @@ public class ClientDAO extends AbstractDAO<Client> {
     public ClientDAO(Connection connection) {
         super(connection);
     }
-
-    /**
-     * Finds a client in the database by their name.
-     *
-     * @param name the name of the client to be found
-     * @return the {@link Client} object if found; otherwise {@code null}
-     * @throws SQLException if a database access error occurs
-     */
-
-    public Client findByName(String name) throws SQLException{
-        String query = "SELECT * FROM client WHERE name = ?";
-        try(PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, name);
-            try(ResultSet rs = stmt.executeQuery()) {
-                List<Client> results = createObjects(rs);
-                return results.isEmpty() ? null : results.get(0);
-            }
-        }
-    }
 }

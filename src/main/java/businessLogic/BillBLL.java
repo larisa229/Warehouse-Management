@@ -5,7 +5,6 @@ import dataModel.Bill;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,22 +26,6 @@ public class BillBLL {
 
     public BillBLL(Connection connection) {
         this.billDAO = new BillDAO(connection);
-    }
-
-    /**
-     * Retrieves all bills from the database.
-     *
-     * @return a list of all bills
-     * @throws RuntimeException if there is a database error while fetching the bills
-     */
-
-    public List<Bill> getAllBills() {
-        try {
-            return billDAO.findAll();
-        } catch(SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to fetch bills: " + e.getMessage());
-            throw new RuntimeException("Database error, e");
-        }
     }
 
     /**

@@ -21,22 +21,4 @@ public class OrderDAO extends AbstractDAO<Order> {
     public OrderDAO(Connection connection) {
         super(connection);
     }
-
-    /**
-     * Retrieves all orders associated with a given client ID.
-     *
-     * @param clientId the ID of the client
-     * @return a list of orders made by the specified client
-     * @throws SQLException if a database access error occurs
-     */
-
-    public List<Order> findByClientId(int clientId) throws SQLException {
-        String query = "SELECT * FROM order WHERE client_id = ?";
-        try(PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, clientId);
-            try(ResultSet rs = stmt.executeQuery()) {
-                return createObjects(rs);
-            }
-        }
-    }
 }

@@ -3,9 +3,6 @@ package dataAccess;
 import dataModel.Bill;
 
 import java.sql.*;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Data Access Object for the {@link Bill} entity.
@@ -57,35 +54,6 @@ public class BillDAO {
             }
         }
         throw new SQLException("Failed to insert bill");
-    }
-
-    /**
-     * Retrieves all {@link Bill} records from the database.
-     *
-     * @return a list of all bills
-     * @throws SQLException if a database access error occurs
-     */
-
-    public List<Bill> findAll() throws SQLException {
-        String sql = "SELECT * FROM log";
-        try(Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)) {
-            return Stream.generate(() -> {
-                try {
-                    return rs.next() ? new Bill(
-                            rs.getInt("id"),
-                            rs.getInt("order_id"),
-                            rs.getString("client_name"),
-                            rs.getString("product_name"),
-                            rs.getInt("quantity"),
-                            rs.getBigDecimal("total_price"),
-                            rs.getTimestamp("order_date").toLocalDateTime()
-                    ) : null;
-                } catch(SQLException e) {
-                    throw new RuntimeException("Failed to read ResultSet", e);
-                }
-            }).takeWhile(bill -> bill != null).collect(Collectors.toList());
-        }
     }
 
     /**
