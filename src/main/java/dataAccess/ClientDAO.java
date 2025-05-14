@@ -3,7 +3,6 @@ package dataAccess;
 import dataModel.Client;
 
 import java.sql.*;
-import java.util.List;
 
 /**
  * Data Access Object for {@link Client}.

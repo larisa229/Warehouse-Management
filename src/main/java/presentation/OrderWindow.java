@@ -155,7 +155,6 @@ public class OrderWindow extends VBox {
             displayBill(bill);
             loadData();
             showAlert("Order placed successfully!", Alert.AlertType.INFORMATION);
-
         } catch (UnderStockException e) {
             showAlert("Under stock: " + e.getMessage(), Alert.AlertType.ERROR);
         } catch (Exception e) {
@@ -174,23 +173,7 @@ public class OrderWindow extends VBox {
             showAlert("No bill found for this order.", Alert.AlertType.ERROR);
             return;
         }
-        String formattedBill = String.format(
-                "=== ORDER BILL ===\n" +
-                        "Order ID: %d\n" +
-                        "Client: %s\n" +
-                        "Product: %s\n" +
-                        "Quantity: %d\n" +
-                        "Unit Price: $%.2f\n" +
-                        "Total: $%.2f\n" +
-                        "Date: %s\n",
-                bill.orderId(),
-                bill.clientName(),
-                bill.productName(),
-                bill.quantity(),
-                bill.totalPrice().divide(BigDecimal.valueOf(bill.quantity())),
-                bill.totalPrice(),
-                bill.orderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-        );
+        String formattedBill = bill.toFormattedString();
         billTextArea.setText(formattedBill);
     }
 
