@@ -86,7 +86,7 @@ public class ConnectionFactory {
             try {
                 connection.close();
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "An error occured while trying to close the connection");
+                LOGGER.log(Level.WARNING, "An error occurred while trying to close the connection");
             }
         }
     }
@@ -102,7 +102,7 @@ public class ConnectionFactory {
             try {
                 statement.close();
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "An error occured while trying to close the statement");
+                LOGGER.log(Level.WARNING, "An error occurred while trying to close the statement");
             }
         }
     }
@@ -118,7 +118,7 @@ public class ConnectionFactory {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "An error occured while trying to close the ResultSet");
+                LOGGER.log(Level.WARNING, "An error occurred while trying to close the ResultSet");
             }
         }
     }
